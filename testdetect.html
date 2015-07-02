@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="detect.js"></script>
+    <script>
+        var ua = detect.parse(navigator.userAgent);
+        var context = {
+            // keep in the sender side
+            browser: ua.browser.name,
+            os: {
+                name: ua.os.family,
+                version: ua.os.version
+            },
+            screen: {
+                width: screen.width,
+                height: screen.height,
+                density: window.devicePixelRatio || 1
+            },
+
+            // get from host page
+            referrer: {
+                url: document.referrer
+            },
+            url: location.href
+        }
+        console.log(context)
+    </script>
+</head>
+<body>
+var ua = detect.parse(navigator.userAgent);
+
+</body>
+</html>
