@@ -4,7 +4,7 @@ http.createServer(function (req, res) {
     if (req.headers.host.indexOf('community') != -1) {
         //sub domain
         console.log('community cookie:', req.headers);
-        console.log()
+        console.log();
         res.writeHead(200, {
             'Set-Cookie': 'subdomainValue=community;Domain=community.hcd.com',
             'Content-Type': 'text/plain'
@@ -13,7 +13,7 @@ http.createServer(function (req, res) {
     } else {
         // top domain
         console.log('hcd cookie:', req.headers);
-        console.log()
+        console.log();
         res.writeHead(200, {
             //'Set-Cookie': 'domainValue=hcd.com;Domain=hcd.com',
             'Content-Type': 'text/plain'
