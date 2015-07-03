@@ -1,0 +1,16 @@
+{
+  "name": "track",
+  "version": "0.0.1",
+  "description": "hcd tracking",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mountainmoon/track.git"
+  },
+  "author": "hcd",
+  "license": "MIT",
+  "devDependencies": {
+    "uglify-js": ">= 1.3.4",
+    "duo": "^0.12.0"
+  }
+}
