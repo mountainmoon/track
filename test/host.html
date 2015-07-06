@@ -3,14 +3,18 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <script src="../track.js">
+    <script src="track.js">
     </script>
     <script>
         var collector = track('collector');
         collector.init();
+
+        collector.page('st.index', {version: '20150706'});
+        collector.identify();
+        collector.track('st.index.lng', {language: 'en'});
     </script>
 </head>
 <body>
-
+    track host
 </body>
 </html>
