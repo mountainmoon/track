@@ -270,7 +270,6 @@ function ready2send(callback) {
         callback();
     };
     iframe.style.display = 'none';
-    console.log('test');
 
     document.addEventListener('DOMContentLoaded', function () {
         document.body.appendChild(iframe);
@@ -469,11 +468,19 @@ var methods = ['page', 'track', 'identify'];
 function init() {
     if (!cookie('uuid')) {
         cookie('uuid', anonymousId = uuid(), {maxage: TEN_YEARS});
+    } else anonymousId = cookie('uuid');
+
+    // virtual session id.
+    var vsid = cookie('vsid');
+    if (!vsid) {
+        var vsid = uuid();
+        cookie('vsid', vsid);
     }
+    context.vsid = vsid;
     
     methods.forEach(function (method) {
         sender[method] = function (data) {
-            post(data, 'http://tracking.hcd.com:3000/' + method);//https://api.segment.io/v1/
+            post(data, 'http://tracking.hcd.com:3000/' + method);//https://api.segment.io/v1/http://tracking.hcd.com:3000/
         }
     });
 
@@ -492,17 +499,18 @@ function post(data, url) {
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
             if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
-                console.log(typeof xhr.response);
+                console.log('post done:', xhr.response);
             } else {
-                console.log(xhr.response);
+                console.warn('post failed', xhr.response);
             }
         }
     };
-    extend(data, context);
+    extend(data.context, context);
+    data.anonymousId = anonymousId;
     xhr.send(JSON.stringify(data));
 }
 
-// exports methods page, track and identify.
+// exports methods: page, track and identify.
 var sender = {
     init: init
 };

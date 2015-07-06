@@ -18,7 +18,6 @@ app.post('/page', handler);
 app.post('/identify', handler);
 
 function handler(req, res) {
-    console.log(req.hostname);
     if (req.hostname == 'tracking.hcd.com') {
         console.log('req.cookies: ', req.cookies);
         console.log('req.url:', req.url);
