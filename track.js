@@ -1,12 +1,4 @@
-(function umd(require){
-  if ('object' == typeof exports) {
-    module.exports = require('1');
-  } else if ('function' == typeof define && (define.amd || define.cmd)) {
-    define(function(){ return require('1'); });
-  } else {
-    this['track'] = require('1');
-  }
-})((function outer(modules, cache, entries){
+(function outer(modules, cache, entries){
 
   /**
    * Global
@@ -113,7 +105,6 @@ module.exports = function (name) {
 }, {"./collector.js":2,"./sender.js":3}],
 2: [function(require, module, exports) {
 var extend = require('./utils.js').extend;
-var uuid = require('./utils.js').uuid;
 var bridge = require('./bridge.js');
 var cookie = require('mountainmoon/cookie');
 
@@ -259,7 +250,9 @@ function ready2send(callback) {
     };
     iframe.style.display = 'none';
 
-    document.addEventListener('DOMContentLoaded', function () {
+    if (/loaded|complete/.test(document.readyState)) {
+        document.body.appendChild(iframe);
+    } else document.addEventListener('DOMContentLoaded', function () {
         document.body.appendChild(iframe);
     })
 }
@@ -1697,4 +1690,4 @@ module.exports = sender;
     }
 })(window);
 
-}, {}]}, {}, {"1":""}));
+}, {}]}, {}, {"1":"track"})

@@ -4,7 +4,7 @@ UGLIFYJS = $(BINS)/uglifyjs
 SRC = $(wildcard lib/*.js)
 
 track.js: $(SRC)
-	@$(DUO) --stdout --standalone track lib/index.js > $@
+	@$(DUO) --stdout --global track lib/index.js > $@
 	@cp $@ test/$@
 
 track.min.js: track.js
